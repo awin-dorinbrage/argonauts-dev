@@ -1,0 +1,30 @@
+# Exports
+
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/aws-cli:$PATH"
+export PATH="$HOME/.sdkman:$PATH"
+
+# Alias
+
+alias edit_profile="nano ~/work/argonauts-dev/.argonauts_profile && reload"
+alias to-work="cd ~/work"
+
+alias gs="git status"
+alias gm="git commit -m"
+alias gfa="git fetch --all"
+
+
+# Functions
+# Drop the ~/.zshrc alias first; otherwise zsh expands reload() to source ~/.zshrc().
+unalias reload 2>/dev/null
+reload() {
+  if [[ -n "${ZSH_VERSION:-}" ]]; then
+    exec zsh
+  elif [[ -n "${BASH_VERSION:-}" ]]; then
+    exec bash
+  else
+    echo "reload: unknown shell" >&2
+    return 1
+  fi
+}
